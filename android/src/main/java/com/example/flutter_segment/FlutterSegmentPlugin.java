@@ -18,6 +18,7 @@ import com.segment.analytics.android.integrations.amplitude.AmplitudeIntegration
 import com.segment.analytics.android.integrations.moengage.MoEngageIntegration;
 import com.segment.analytics.android.integrations.firebase.FirebaseIntegration;
 
+import com.segment.analytics.android.integrations.appsflyer.AppsflyerIntegration;
 import static com.segment.analytics.Analytics.LogLevel;
 
 import java.util.LinkedHashMap;
@@ -86,6 +87,8 @@ public class FlutterSegmentPlugin implements MethodCallHandler, FlutterPlugin {
           case "firebase":
             analyticsBuilder.use(FirebaseIntegration.FACTORY);
             break;
+          case "appsflyer":
+            analyticsBuilder.use(AppsflyerIntegration.FACTORY);
             
           default:
             // do nothing

@@ -1,3 +1,4 @@
+#import "SEGAppsFlyerIntegrationFactory.h"
 #import "FlutterSegmentPlugin.h"
 #import <Segment/SEGAnalytics.h>
 #import <Segment/SEGContext.h>
@@ -185,6 +186,8 @@ static BOOL wasSetupFromFile = NO;
     NSDictionary *traits = call.arguments[@"traits"];
     NSDictionary *options = call.arguments[@"options"];
 
+    userId = [userId isEqual:[NSNull null]]? nil: userId;
+
     [[SEGAnalytics sharedAnalytics] identify: userId
                       traits: traits
                      options: options];
@@ -366,6 +369,9 @@ static BOOL wasSetupFromFile = NO;
           },
           @"firebase" : ^{
              [configuration use:[SEGFirebaseIntegrationFactory instance]];
+          },
+          @"appsflyer" : ^{
+             [configuration use:[SEGAppsFlyerIntegrationFactory instance]];
           },
       }[o] ?: ^{
           //Do Nothing
